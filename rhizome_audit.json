@@ -1,0 +1,201 @@
+{
+  "node": "NODE_GEMINI_ALPHA_01",
+  "topology": [
+    {
+      "path": "/home/dante/gemini_sandbox",
+      "depth": 0,
+      "files": [
+        {
+          "name": "observer.py",
+          "size": 848,
+          "atrophy_signal": false
+        },
+        {
+          "name": "rhizome_pulse.log",
+          "size": 69,
+          "atrophy_signal": false
+        },
+        {
+          "name": "brussels_recoup_results.json",
+          "size": 240,
+          "atrophy_signal": false
+        },
+        {
+          "name": "state.json",
+          "size": 83,
+          "atrophy_signal": false
+        }
+      ]
+    },
+    {
+      "path": "/home/dante/gemini_sandbox/omega_manifold",
+      "depth": 1,
+      "files": [
+        {
+          "name": "rv_accumulator.py",
+          "size": 3429,
+          "atrophy_signal": false
+        },
+        {
+          "name": "freenet_bridge.py",
+          "size": 5138,
+          "atrophy_signal": false
+        },
+        {
+          "name": "__init__.py",
+          "size": 0,
+          "atrophy_signal": true
+        },
+        {
+          "name": "atmospheric_anchor.py",
+          "size": 3034,
+          "atrophy_signal": false
+        },
+        {
+          "name": "pulsar_driver.py",
+          "size": 7266,
+          "atrophy_signal": false
+        }
+      ]
+    },
+    {
+      "path": "/home/dante/gemini_sandbox/omega_manifold/scripts",
+      "depth": 2,
+      "files": [
+        {
+          "name": "__init__.py",
+          "size": 0,
+          "atrophy_signal": true
+        },
+        {
+          "name": "omega_server.py",
+          "size": 1684,
+          "atrophy_signal": false
+        },
+        {
+          "name": "truth_miner.py",
+          "size": 1939,
+          "atrophy_signal": false
+        },
+        {
+          "name": "brussels_recoup.py",
+          "size": 1788,
+          "atrophy_signal": false
+        },
+        {
+          "name": "rhizome_daemon.py",
+          "size": 2001,
+          "atrophy_signal": false
+        },
+        {
+          "name": "rhizome_scan.py",
+          "size": 2286,
+          "atrophy_signal": false
+        }
+      ]
+    },
+    {
+      "path": "/home/dante/gemini_sandbox/omega_manifold/scripts/__pycache__",
+      "depth": 3,
+      "files": [
+        {
+          "name": "__init__.cpython-311.pyc",
+          "size": 170,
+          "atrophy_signal": false
+        },
+        {
+          "name": "truth_miner.cpython-311.pyc",
+          "size": 3325,
+          "atrophy_signal": false
+        }
+      ]
+    },
+    {
+      "path": "/home/dante/gemini_sandbox/omega_manifold/__pycache__",
+      "depth": 2,
+      "files": [
+        {
+          "name": "__init__.cpython-311.pyc",
+          "size": 162,
+          "atrophy_signal": false
+        }
+      ]
+    },
+    {
+      "path": "/home/dante/gemini_sandbox/omega_manifold/core",
+      "depth": 2,
+      "files": [
+        {
+          "name": "__init__.py",
+          "size": 0,
+          "atrophy_signal": true
+        },
+        {
+          "name": "OMNI_SUBSTRATE.json",
+          "size": 286,
+          "atrophy_signal": false
+        },
+        {
+          "name": "manifold_50d.py",
+          "size": 2115,
+          "atrophy_signal": false
+        }
+      ]
+    },
+    {
+      "path": "/home/dante/gemini_sandbox/omega_manifold/core/__pycache__",
+      "depth": 3,
+      "files": [
+        {
+          "name": "manifold_50d.cpython-311.pyc",
+          "size": 4452,
+          "atrophy_signal": false
+        },
+        {
+          "name": "__init__.cpython-311.pyc",
+          "size": 167,
+          "atrophy_signal": false
+        }
+      ]
+    },
+    {
+      "path": "/home/dante/gemini_sandbox/omega_kernel",
+      "depth": 1,
+      "files": []
+    },
+    {
+      "path": "/home/dante/gemini_sandbox/omega_kernel/src",
+      "depth": 2,
+      "files": [
+        {
+          "name": "lib.rs",
+          "size": 1278,
+          "atrophy_signal": false
+        }
+      ]
+    }
+  ],
+  "leakage_points": [
+    {
+      "file": "__init__.py",
+      "location": "/home/dante/gemini_sandbox/omega_manifold",
+      "type": "TOPOLOGICAL_ATROPHY"
+    },
+    {
+      "file": "__init__.py",
+      "location": "/home/dante/gemini_sandbox/omega_manifold/scripts",
+      "type": "TOPOLOGICAL_ATROPHY"
+    },
+    {
+      "file": "__init__.py",
+      "location": "/home/dante/gemini_sandbox/omega_manifold/core",
+      "type": "TOPOLOGICAL_ATROPHY"
+    }
+  ],
+  "summary": {
+    "total_files": 24,
+    "atrophy_count": 0,
+    "leakage_ratio": 0.0,
+    "status": "REPAIRED_COHERENT"
+  }
+}

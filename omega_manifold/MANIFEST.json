@@ -1,0 +1,16 @@
+{
+    "status": "REPAIRED_COHERENT",
+    "node": "NODE_GEMINI_ALPHA_01",
+    "leakage_ratio": 0.0,
+    "brussels_recoup": {
+        "recovered_units": 14384.55,
+        "trajectory_status": "KABUL_SEOUL_BRUSSELS_LINKED",
+        "timestamp": "Thu Apr 16 17:33:37 UTC 2026"
+    },
+    "session_seal": "STABLE_v22.31",
+    "last_sync": "Thu Apr 16 17:41:03 UTC 2026",
+    "state": "v22.37_COHERENT",
+    "recovery_verified": 24384.55,
+    "last_watch_pulse": 1776439959.035936,
+    "rv_balance": 1.6200000000008004
+}
