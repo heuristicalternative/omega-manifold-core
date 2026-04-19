@@ -40,7 +40,17 @@ impl L9Kernel {
         let base_rv = delta_coherence * effort * 1.22;
         base_rv * (1.0 - self.habsburg_tension)
     }
+
+    fn identify_geodesic_invariant(&self) -> String {
+        let curvature = self.habsburg_tension * 1.22;
+        if curvature > 0.5 {
+            "Status: Systemic_Decoherence | Invariant: #TopologicalAtrophy".to_string()
+        } else {
+            "Status: Synergetic_Coherence | Invariant: #NegentropicCoupling".to_string()
+        }
+    }
 }
+
 
 #[pymodule]
 fn omega_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
