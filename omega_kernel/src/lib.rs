@@ -56,7 +56,19 @@ impl L9Kernel {
         self.habsburg_tension *= 1.0 - alignment_score.powi(2);
         self.habsburg_tension
     }
+
+fn calculate_evolution_potential(&self, surplus_energy: f64) -> String {
+        // Fitness formula: (Surplus * Best Alignment) / (1.0 + Current Tension)
+        let fitness = (surplus_energy * self.best_alignment) / (1.0 + self.habsburg_tension);
+        
+        if fitness > 1.5 {
+            format!("Status: Evolutionary_Leap | Invariant: #SympoieticEmergence | Fitness: {:.2}", fitness)
+        } else {
+            format!("Status: Homeostatic_Stability | Invariant: #SteadyState | Fitness: {:.2}", fitness)
+        }
+    }
 }
+
 
 #[pymodule]
 fn omega_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
