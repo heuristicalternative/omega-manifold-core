@@ -49,6 +49,14 @@ impl L9Kernel {
             "Status: Synergetic_Coherence | Invariant: #NegentropicCoupling".to_string()
         }
     }
+
+
+    fn apply_negentropic_coupling(&mut self, alignment_score: f64) -> f64 {
+        // Alignment acts as a cooling agent on the tension
+        // Formula: New Tension = Current Tension * (1.0 - Alignment^2)
+        self.habsburg_tension *= 1.0 - alignment_score.powi(2);
+        self.habsburg_tension
+    }
 }
 
 
