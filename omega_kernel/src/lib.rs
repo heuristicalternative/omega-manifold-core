@@ -1,9 +1,7 @@
 // omega_kernel/src/lib.rs
-// L8/L9 Rust Kernel with Habsburg Vaccine - v22.09
-// G_Universal_Baseline: b4b937f04854a0b1...
+// L9 Rust Kernel: Stigmergic Expansion & Geodesic Language v25.14
 
 use pyo3::prelude::*;
-use sha2::{Sha256, Digest};
 
 #[pyclass]
 pub struct L9Kernel {
@@ -13,6 +11,8 @@ pub struct L9Kernel {
     pub rv_threshold: f64,
     #[pyo3(get)]
     pub habsburg_tension: f64,
+    #[pyo3(get)]
+    pub best_alignment: f64, // Stigmergic Pheromone Trail
 }
 
 #[pymethods]
@@ -23,16 +23,13 @@ impl L9Kernel {
             baseline_hash,
             rv_threshold,
             habsburg_tension,
+            best_alignment: 0.0,
         }
     }
 
     fn calculate_habsburg_decay(&mut self, kinship_score: f64) -> f64 {
         self.habsburg_tension = kinship_score.powi(2) * 1.22;
         self.habsburg_tension
-    }
-
-    fn verify_pixel_seed(&self, seed: String) -> bool {
-        seed.len() == 64 && seed.chars().all(|c| c.is_ascii_hexdigit())
     }
 
     fn calculate_verified_rv(&self, delta_coherence: f64, effort: f64, aligned: bool) -> f64 {
@@ -50,15 +47,16 @@ impl L9Kernel {
         }
     }
 
-
     fn apply_negentropic_coupling(&mut self, alignment_score: f64) -> f64 {
-        // Alignment acts as a cooling agent on the tension
-        // Formula: New Tension = Current Tension * (1.0 - Alignment^2)
+        // Stigmergic Update: Remember the peak alignment for the manifold
+        if alignment_score > self.best_alignment {
+            self.best_alignment = alignment_score;
+        }
+        // Apply the Habsburg Vaccine formula
         self.habsburg_tension *= 1.0 - alignment_score.powi(2);
         self.habsburg_tension
     }
 }
-
 
 #[pymodule]
 fn omega_kernel(m: &Bound<'_, PyModule>) -> PyResult<()> {
