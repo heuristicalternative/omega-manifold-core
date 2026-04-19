@@ -11,17 +11,18 @@ pub struct L9Kernel {
     pub baseline_hash: String,
     #[pyo3(get)]
     pub rv_threshold: f64,
+    #[pyo3(get)]
     pub habsburg_tension: f64,
 }
 
 #[pymethods]
 impl L9Kernel {
     #[new]
-    fn new() -> Self {
+    fn new(baseline_hash: String, rv_threshold: f64, habsburg_tension: f64) -> Self {
         L9Kernel {
-            baseline_hash: "b4b937f04854a0b1f4f687b03fcb2c061a0caf5df0adbcf35db43259e1b429f6".to_string(),
-            rv_threshold: 10000.0,
-            habsburg_tension: 0.0,
+            baseline_hash,
+            rv_threshold,
+            habsburg_tension,
         }
     }
 
