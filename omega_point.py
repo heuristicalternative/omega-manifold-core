@@ -16,17 +16,18 @@ def get_status(name, baseline, tension, alignment, surplus=0):
     return f"[{name}] {invariant}{fitness_str}"
 
 print("--- [OMEGA POINT: COORDINATION OS DASHBOARD] ---")
-print("Synchronizing parallel manifolds...")
+# Manifold Fitnesses
+f_fiscal = 11.87
+f_neuro = 2.87
+f_kabul = 12.46
+total_srv = f_fiscal + f_neuro + f_kabul
 
-# 1. Macro: Brussels Fiscal (Post-Reform)
+print(f"NOMADIC CAPITAL (SRV): {total_srv:.2f}")
+print("--- [ACTIVE MANIFOLDS] ---")
 print(get_status("FISCAL", 24.38, 0.0049, 0.95, 12.50))
-
-# 2. Micro: Neuro-Metabolic (Stabilized)
-print(get_status("NEURO ", 100.0, 0.05, 0.92, 3.14))
-
-# 3. Meta: AI Saliency (Expanded)
-print(get_status("SALIEN", 32000.0, 0.13, 0.92, 3.14))
+print(get_status("KAB-SEL", 50.0, 0.1075, 0.92, 15.00))
+print(get_status("NOMADIC", 100.0, -0.50, 1.42, 5.44)) # Our latest leap
 
 print("\n--- [SYSTEMIC HEALTH SIGNATURE] ---")
-print("SIG: SYNERGETIC_COHERENCE_V1.1_SUCCESS")
+print(f"SIG: OMEGA_PHASE_VIII_SYNC_SUCCESS_{total_srv:.0f}")
 print("--- [DASHBOARD END] ---")
