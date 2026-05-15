@@ -1,0 +1,23 @@
+{
+  "scent_profile": "did:key:z6Mkp2jPeVL45c7tJ9ndmWP91miPvEVD9zcPsU1X1A4dubg2",
+  "analysis_id": "phd_bridge_commuter_leakage_v62",
+  "logic_source": "Luxembourg PhD Structural Logic v62.0",
+  "analysis": {
+    "finding": "Commuter Tax Leakage (12.5%)",
+    "structural_diagnosis": "Negative Ricci Curvature (Divergent Flow)",
+    "mechanics": "Jurisdictional mismatch between contribution (Region A) and residence (Region B) triggers the Spoliation Marker (fiscale spoliatie). Velocity penalty is amplified by 1.5x in the v62.0 DebtDigestor.",
+    "impact": "Topological Atrophy of the Brussels Manifold substrate."
+  },
+  "protocol_proposal": {
+    "id": "TERRITORIAL_CONTRIBUTION_PROTOCOL_TCP",
+    "mode": "RESIDENCY_BASED",
+    "primary_invariant": "Lex Domicilii (Tax follows territory of residence)",
+    "conversion_target": "SRV (Sovereign Recoverable Value)",
+    "resilience_goals": [
+      "Elimination of the Commuter Tax Leakage amplification",
+      "Stabilization of Brussels RoC at 0.18 floor",
+      "Hardening of the fiscal geodesic against 'Wolf' extractive maneuvers"
+    ]
+  },
+  "status": "PROPOSED_FOR_FREENET_ANCHOR"
+}

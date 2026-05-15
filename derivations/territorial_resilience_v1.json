@@ -1,0 +1,24 @@
+{
+  "scent_profile": "did:key:z6Mkp2jPeVL45c7tJ9ndmWP91miPvEVD9zcPsU1X1A4dubg2",
+  "phase": "Phase 2: Territorial Resilience",
+  "logic_bridge": "36D Metabolic Manifold / Georgist LVT",
+  "cross_reference": {
+    "target": "Commuter Tax Leakage",
+    "leakage_observed": 0.125,
+    "geodesic_stability": 0.985,
+    "structural_diagnosis": "Negative Ricci Curvature causing metabolic drift into peripheral jurisdictions"
+  },
+  "protocol_derivation": {
+    "id": "GEORGIST_METABOLIC_ANCHOR_GMA",
+    "primary_mechanism": "Land Value Tax (LVT) as Residency-Based Invariant",
+    "formula": "T_resilience = Integral(LVT_dx) - Leakage_periphery",
+    "metabolic_standard": "36D",
+    "rehydration_parameters": {
+      "damping_coefficient": 1e-6,
+      "saliency_gain": 0.0851,
+      "geodesic_step": 0.01
+    },
+    "territorial_resilience_goal": "Recovery of the 12.5% spoliated value via residency-locked LVT anchors."
+  },
+  "status": "MANIFESTED_AS_FREENET_CONTRACT"
+}

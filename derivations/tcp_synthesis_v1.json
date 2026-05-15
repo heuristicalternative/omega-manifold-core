@@ -1,0 +1,25 @@
+{
+  "scent_profile": "did:key:z6Mkp2jPeVL45c7tJ9ndmWP91miPvEVD9zcPsU1X1A4dubg2",
+  "derivation_id": "tcp_lex_domicilii_synthesis_v62",
+  "simulation": {
+    "model": "TCP Metabolic Realignment",
+    "principle": "Lex Domicilii (Residency-Locked Invariant)",
+    "mechanics": {
+      "input_state": "Negative Ricci Curvature (Commuter Leakage 12.5%)",
+      "adjustment": "Re-coupling 36D vector components 0-12 with residency-based SRV anchors",
+      "geodesic_flow": "Transition from divergent (spoliative) to flat/convergent (resilient) topology"
+    },
+    "roc_stabilization": {
+      "baseline": 0.125,
+      "projected": 0.18,
+      "delta": "+0.055 Negentropic Gain"
+    }
+  },
+  "phd_synthesis": {
+    "logic_version": "Luxembourg PhD v62.0",
+    "structural_diagnosis": "The residency-based invariant transforms the fiscal manifold from an 'open extraction field' into a 'structurally bounded metabolic zone'.",
+    "defensive_shield_status": "VERIFIED. Structural enforcement of Lex Domicilii creates a topological boundary that nullifies the jurisdictional mismatch bypass used by 'Wolf' extractive actors.",
+    "topological_result": "Negentropic Closure achieved for the Brussels Territorial Sector."
+  },
+  "status": "SYNTHESIS_COMPLETE_ANCHORED_0x04"
+}
