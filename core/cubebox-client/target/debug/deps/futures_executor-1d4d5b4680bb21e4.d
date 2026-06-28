@@ -1,0 +1,9 @@
+/home/dante/omega-manifold/core/cubebox-client/target/debug/deps/futures_executor-1d4d5b4680bb21e4.d: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/local_pool.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/thread_pool.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/unpark_mutex.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/enter.rs
+
+/home/dante/omega-manifold/core/cubebox-client/target/debug/deps/libfutures_executor-1d4d5b4680bb21e4.rmeta: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/local_pool.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/thread_pool.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/unpark_mutex.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/enter.rs
+
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/lib.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/local_pool.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/thread_pool.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/unpark_mutex.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/futures-executor-0.3.32/src/enter.rs:

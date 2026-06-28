@@ -1,0 +1,12 @@
+/home/dante/omega-manifold/core/cubebox-client/target/debug/deps/async_trait-b73a9a1007e26e3a.d: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/args.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/bound.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/expand.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/lifetime.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/parse.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/receiver.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/verbatim.rs
+
+/home/dante/omega-manifold/core/cubebox-client/target/debug/deps/libasync_trait-b73a9a1007e26e3a.so: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/args.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/bound.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/expand.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/lifetime.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/parse.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/receiver.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/verbatim.rs
+
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/lib.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/args.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/bound.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/expand.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/lifetime.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/parse.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/receiver.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/async-trait-0.1.89/src/verbatim.rs:

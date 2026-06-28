@@ -1,0 +1,11 @@
+/home/dante/omega-manifold/target/debug/deps/netlink_sys-b48cf37f4d276097.d: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/constants.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/socket.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/addr.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/async_socket.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/async_socket_ext.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/tokio.rs
+
+/home/dante/omega-manifold/target/debug/deps/libnetlink_sys-b48cf37f4d276097.rmeta: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/constants.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/socket.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/addr.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/async_socket.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/async_socket_ext.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/tokio.rs
+
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/lib.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/constants.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/socket.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/addr.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/async_socket.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/async_socket_ext.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/netlink-sys-0.8.8/src/tokio.rs:

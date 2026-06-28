@@ -1,0 +1,13 @@
+/home/dante/omega-manifold/core/cubebox-client/target/debug/deps/yoke-b6e0377b49afdc02.d: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/cartable_ptr.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/either.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/kinda_sorta_dangling.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/macro_impls.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/utils.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/yoke.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/yokeable.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/zero_from.rs
+
+/home/dante/omega-manifold/core/cubebox-client/target/debug/deps/libyoke-b6e0377b49afdc02.rmeta: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/cartable_ptr.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/either.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/kinda_sorta_dangling.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/macro_impls.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/utils.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/yoke.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/yokeable.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/zero_from.rs
+
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/lib.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/cartable_ptr.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/either.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/kinda_sorta_dangling.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/macro_impls.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/utils.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/yoke.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/yokeable.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/yoke-0.8.3/src/zero_from.rs:

@@ -1,3 +1,11 @@
+[workspace]
+members = [
+    ".",
+    "core/mcp-bridge",
+    "core/mcp-cli",
+    "core/rtk-proxy"
+]
+
 [package]
 name = "omega-manifold-core"
 version = "16.78.1"
@@ -9,6 +17,7 @@ description = "Unified Hyper-Manifold OS core execution engine containing rhizom
 tokio = { version = "1.38", features = ["full", "tracing"] }
 libp2p = { version = "0.53", features = ["tcp", "dns", "noise", "yamux", "gossipsub", "mdns", "macros", "tokio"] }
 serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
 cbor4ii = { version = "0.3", features = ["serde"] }
 futures = "0.3"
 tracing = "0.1"
