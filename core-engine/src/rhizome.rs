@@ -1,6 +1,8 @@
 use libp2p::{gossipsub, mdns, noise, tcp, yamux, Swarm, SwarmBuilder};
 use std::error::Error;
 use std::time::Duration;
+use libp2p::core::PeerId;
+use libp2p::identity;
 
 #[derive(libp2p::swarm::NetworkBehaviour)]
 pub struct RhizomeBehaviour {
@@ -14,6 +16,9 @@ pub struct RhizomeNode {
 
 impl RhizomeNode {
     pub async fn new() -> Result<Self, Box<dyn Error>> {
+        let local_key = identity::Keypair::generate_ed25519();
+        let local_peer_id = PeerId::from(local_key.public());
+
         let mut swarm = SwarmBuilder::with_new_identity()
             .with_tokio()
             .with_tcp(

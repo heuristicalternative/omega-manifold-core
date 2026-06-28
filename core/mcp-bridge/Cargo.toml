@@ -1,6 +1,6 @@
 [package]
 name = "omega-mcp-bridge"
-version = "16.78.1"
+version = "16.78.2"
 edition = "2021"
 authors = ["Dante-Gabryell Monson"]
 description = "Native MCP JSON-RPC 2.0 protocol broker connecting high-dimensional states to external clients."

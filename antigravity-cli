@@ -71,7 +71,7 @@ def main():
     }
 
     # Standardized public developer API gateway routing
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent"
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
     headers = {
         'Content-Type': 'application/json',
         'x-goog-api-key': API_KEY

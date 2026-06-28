@@ -3,7 +3,7 @@
 
 use std::sync::atomic::{AtomicUsize, Ordering};
 use tokio::sync::mpsc;
-use crate::manifold::hybrid_engine::{OptimizationTrace, ManifoldCoordinate};
+use crate::manifold::{OptimizationTrace, ManifoldCoordinate}; // Corrected import
 
 pub const ADDR_CLUSTER_LOG_DECRYPTION: u16 = 0x7360;
 const CRYPTO_STREAM_XOR_MASK: u64 = 0xA5A5A5A5A5A5A5A5;

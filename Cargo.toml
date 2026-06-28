@@ -1,6 +1,5 @@
 [workspace]
 members = [
-    ".",
     "core/mcp-bridge",
     "core/mcp-cli",
     "core/rtk-proxy"
@@ -12,6 +11,14 @@ version = "16.78.2"
 authors = ["Dante-Gabryell Monson"]
 edition = "2021"
 description = "Unified Hyper-Manifold OS core execution engine containing rhizomeOS and Coordination OS substrates."
+
+[lib]
+name = "omega_manifold_core"
+path = "src/lib.rs"
+
+[[bin]]
+name = "omega-manifold-node"
+path = "src/main.rs"
 
 [dependencies]
 tokio = { version = "1.38", features = ["full", "tracing"] }

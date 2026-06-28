@@ -1,0 +1,3 @@
+Result<libp2p::libp2p_mdns::Behaviour<libp2p::libp2p_mdns::tokio::Tokio>, std::io::Error>
+Result<libp2p::libp2p_mdns::Behaviour<libp2p::libp2p_mdns::tokio::Tokio>, std::io::Error>: NetworkBehaviour
+libp2p::builder::phase::behaviour::TryIntoBehaviour<Result<libp2p::libp2p_mdns::Behaviour<libp2p::libp2p_mdns::tokio::Tokio>, std::io::Error>>

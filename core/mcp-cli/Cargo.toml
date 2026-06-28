@@ -1,0 +1,12 @@
+[package]
+name = "omega-mcp-cli"
+version = "16.78.2"
+edition = "2021"
+authors = ["Dante-Gabryell Monson"]
+description = "Command-line query utility and structural prober for the Omega MCP Bridge pipeline layer."
+
+[dependencies]
+tokio = { version = "1.38", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+clap = { version = "4.4", features = ["derive"] }

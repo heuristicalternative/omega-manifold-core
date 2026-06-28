@@ -4,7 +4,7 @@
 use std::sync::atomic::{AtomicUsize, Ordering};
 use std::ptr::NonNull;
 use tokio::sync::mpsc;
-use crate::manifold::hybrid_engine::{OptimizationTrace, ManifoldCoordinate};
+use crate::manifold::{OptimizationTrace, ManifoldCoordinate}; // Corrected import
 
 pub const ADDR_GLOBAL_NAMESPACE_SECONDARY_BALANCING: u16 = 0x3BD0;
 
