@@ -6,11 +6,9 @@ import subprocess
 import requests
 import time
 
-# Guarantee absolute pathing to the workspace directory
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 ENV_PATH = os.path.join(SCRIPT_DIR, ".env")
 
-# Load anchored environment data safely using absolute lookups
 if os.path.exists(ENV_PATH):
     for line in open(ENV_PATH):
         if line.strip() and not line.startswith("#"):
@@ -36,7 +34,7 @@ def check_local_deltas():
 def commit_and_gossip_evolution(version_tag):
     print(f"[*] Local compilation verified. Committing delta version {version_tag}...")
     run_cmd(f"git -C {WORKSPACE} add .")
-    run_cmd(f"git -C {WORKSPACE} commit -m 'feat(manifold): cross-coevolved update {version_tag} via Gemini Node'")
+    run_cmd(f"git -C {WORKSPACE} commit -m 'feat(manifold): cross-coevolved update {version_tag}'")
     
     print("[*] Broadcasting state changes to Radicle P2P network...")
     run_cmd(f"git -C {WORKSPACE} push rad main")
@@ -44,20 +42,22 @@ def commit_and_gossip_evolution(version_tag):
     
     print("[*] Mirroring structural state changes to GitHub Cloud repository...")
     run_cmd(f"git -C {WORKSPACE} push origin main")
-    
     print(f"[+] Tri-layer synchronization complete. Node state updated under RID: {RID}")
 
 def main():
-    # Diagnostic Auth Verification Check
-    if not API_KEY or API_KEY == "your_actual_gemini_api_key_here":
-        print("[-] Critical Error: GEMINI_API_KEY is missing or unconfigured. Aborting.")
+    # Check for manual bypass flag
+    if len(sys.argv) > 1 and sys.argv[1] == "--direct":
+        print("[!] Manual bypass engaged. Proceeding with direct network synchronization...")
+        commit_and_gossip_evolution("v16.78.2-direct")
+        sys.exit(0)
+
+    if not API_KEY:
+        print("[-] Critical Error: GEMINI_API_KEY is unconfigured. Use --direct to push offline.")
         sys.exit(1)
-    
-    print(f"[*] Security Check: Loaded API Key identifier ({len(API_KEY)} characters).")
 
     local_diff = check_local_deltas()
     if not local_diff:
-        print("[+] Local workspace is perfectly coherent with current baseline. No mutation needed.")
+        print("[+] Local workspace matches current baseline. No mutation needed.")
         sys.exit(0)
 
     print("[!] Delta detected! Packaging local state for Gemini cognitive processing...")
@@ -65,41 +65,24 @@ def main():
     payload = {
         "contents": [{
             "parts": [{
-                "text": f"Initiate Manifold Update Sequence.\nTarget Baseline: {BASELINE}\nActive RID: {RID}\nLocal Delta:\n{local_diff}\nAction: Evaluate the changes, correct any errors, and output clean updated code."
+                "text": f"Initiate Manifold Update Sequence.\nTarget Baseline: {BASELINE}\nActive RID: {RID}\nLocal Delta:\n{local_diff}"
             }]
         }]
     }
 
-    # Standardized public developer API gateway routing
-    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
-    headers = {
-        'Content-Type': 'application/json',
-        'x-goog-api-key': API_KEY
-    }
+    url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+    headers = { 'Content-Type': 'application/json', 'x-goog-api-key': API_KEY }
     
-    max_retries = 3
-    backoff_delay = 5
-    
-    for attempt in range(1, max_retries + 1):
-        try:
-            response = requests.post(url, headers=headers, data=json.dumps(payload))
-            if response.status_code == 200:
-                print("[+] Cognitive processing complete. Local node state successfully mutated.")
-                commit_and_gossip_evolution("v16.78.2")
-                return
-            elif response.status_code == 429:
-                print(f"[!] Hit Quota Limit (429) on attempt {attempt}/{max_retries}.")
-                if attempt < max_retries:
-                    print(f"[#] Applying backoff: Pausing for {backoff_delay} seconds...")
-                    time.sleep(backoff_delay)
-                    backoff_delay *= 4
-            else:
-                print(f"[-] Communication failed with status code: {response.status_code}")
-                print(f"[-] Gateway response: {response.text[:200]}")
-                return
-        except Exception as e:
-            print(f"[-] Connection error: {e}")
-            return
+    try:
+        response = requests.post(url, headers=headers, data=json.dumps(payload))
+        if response.status_code == 200:
+            print("[+] Cognitive processing complete. Local node state mutated.")
+            commit_and_gossip_evolution("v16.78.2")
+        else:
+            print(f"[-] API Error ({response.status_code}). Gateway busy.")
+            print("[#] Suggestion: Run './antigravity-cli --direct' to bypass quota blocks.")
+    except Exception as e:
+        print(f"[-] Connection error: {e}")
 
 if __name__ == "__main__":
     main()
