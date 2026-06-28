@@ -2,5 +2,8 @@
 members = [
     "core-engine",
     "core/mcp-bridge",
-    "core/cubebox-client",
+    "core/mcp-cli",
+    "core/rtk-proxy",
+    "core/cubebox-client"
 ]
+resolver = "2"

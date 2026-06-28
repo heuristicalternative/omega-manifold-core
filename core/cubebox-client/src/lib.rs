@@ -1,3 +1,4 @@
+#![allow(unused_imports, dead_code)]
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
 use libp2p::{
     swarm::{SwarmEvent},

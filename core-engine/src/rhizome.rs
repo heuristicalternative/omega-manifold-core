@@ -1,8 +1,12 @@
+//! Asynchronous P2P Rhizome Network Subsystem
+//! Configures libp2p Swarm transport parameters under type-safe execution wrappers.
+
 use libp2p::{gossipsub, mdns, noise, tcp, yamux, Swarm, SwarmBuilder};
 use std::error::Error;
 use std::time::Duration;
 use libp2p::core::PeerId;
 use libp2p::identity;
+use tokio::sync::mpsc;
 
 #[derive(libp2p::swarm::NetworkBehaviour)]
 pub struct RhizomeBehaviour {
@@ -15,11 +19,11 @@ pub struct RhizomeNode {
 }
 
 impl RhizomeNode {
-    pub async fn new() -> Result<Self, Box<dyn Error>> {
-        let local_key = identity::Keypair::generate_ed25519();
-        let local_peer_id = PeerId::from(local_key.public());
+    pub async fn new(_memento_tx: mpsc::Sender<Vec<u8>>) -> Result<Self, Box<dyn Error>> {
+        let id_keys = identity::Keypair::generate_ed25519();
 
-        let mut swarm = SwarmBuilder::with_new_identity()
+        // Construct the modern multi-phase swarm transport pipeline
+        let swarm = SwarmBuilder::with_new_identity()
             .with_tokio()
             .with_tcp(
                 tcp::Config::default(),
@@ -28,21 +32,25 @@ impl RhizomeNode {
             )?
             .with_behaviour(|key| {
                 let message_authenticity = gossipsub::MessageAuthenticity::Signed(key.clone());
+                
                 let gossipsub_config = gossipsub::ConfigBuilder::default()
                     .heartbeat_interval(Duration::from_millis(250))
                     .validation_mode(gossipsub::ValidationMode::Strict)
-                    .build()?;
+                    .build()
+                    .expect("Valid structural gossipsub configuration expected");
                 
-                let gossipsub = gossipsub::Behaviour::new(message_authenticity, gossipsub_config)?;
-                let mdns = mdns::tokio::Behaviour::new(mdns::Config::default(), key.public().to_peer_id())?;
+                let gossipsub = gossipsub::Behaviour::new(message_authenticity, gossipsub_config)
+                    .expect("Failed to initialize sovereign Gossipsub behavior");
+                    
+                let mdns = mdns::tokio::Behaviour::new(
+                    mdns::Config::default(), 
+                    key.public().to_peer_id()
+                ).expect("Failed to initialize local mDNS network listener");
                 
-                Ok(RhizomeBehaviour { gossipsub, mdns })
+                RhizomeBehaviour { gossipsub, mdns }
             })?
             .with_swarm_config(|c| c.with_idle_connection_timeout(Duration::from_secs(60)))
             .build();
-
-        let topic = gossipsub::IdentTopic::new("coord://manifold/36D/sync");
-        swarm.behaviour_mut().gossipsub.subscribe(&topic)?;
 
         Ok(Self { swarm })
     }

@@ -1,87 +1,141 @@
-use mcpr::{server::{Server, ServerConfig}, transport::stdio::StdioTransport, Tool};
-use mcpr::schema::common::ToolInputSchema;
-use serde_json::{json, Value};
-use std::error::Error;
-use std::fs::OpenOptions;
-use std::io::Write;
-use chrono::Utc;
+//! HEADER LAYER: L3 - Protocol Actuation & Tool Brokerage
+//! Implementation of the Model Context Protocol (MCP) JSON-RPC 2.0 Specification.
+//! Enables automated, secure multi-tenant filesystem mutations within the workspace.
 
-pub struct OnePixelEngine;
+use serde::{Deserialize, Serialize};
+use serde_json::json;
+use std::path::{Path, PathBuf};
+use tokio::fs;
+use tokio::io::{AsyncBufReadExt, AsyncWriteExt, BufReader};
 
-impl OnePixelEngine {
-    pub fn consider(prompt: &str) -> String {
-        let p = prompt.to_lowercase();
-        if p.contains("rebalance") || p.contains("0.40") {
-            "SET_FLOOR_0.40".to_string()
-        } else if p.contains("sync") || p.contains("gossip") {
-            "TRIGGER_RADICLE_GOSSIP".to_string()
-        } else {
-            "MAINTAIN_STEADY_STATE".to_string()
-        }
-    }
-
-    pub fn execute_jit(pixel_to_do: &str) -> Value {
-        match pixel_to_do {
-            "SET_FLOOR_0.40" => json!({"action": "update", "value": 0.40}),
-            "TRIGGER_RADICLE_GOSSIP" => json!({"action": "exec", "cmd": "rad sync"}),
-            _ => json!({"status": "idle"}),
-        }
-    }
+#[derive(Debug, Serialize, Deserialize)]
+struct JsonRpcRequest {
+    jsonrpc: String,
+    method: String,
+    #[serde(default)]
+    params: serde_json::Value,
+    id: serde_json::Value,
 }
 
-pub struct McpBridge;
+const WORKSPACE_ROOT: &str = "/home/dante/omega-manifold";
 
-impl McpBridge {
-    pub fn init_swarm_transport() -> Server<StdioTransport> {
-        let pulse_tool = Tool {
-            name: "omega_pulse".to_string(),
-            description: Some("Monitors 36D Metabolic Logic and triggers Radicle gossip".to_string()),
-            input_schema: ToolInputSchema {
-                r#type: "object".to_string(),
-                properties: Some([
-                    ("prompt".to_string(), json!({
-                        "type": "string",
-                        "description": "Input signal for metabolic consideration"
-                    }))
-                ].into_iter().collect()),
-                required: Some(vec!["prompt".to_string()]),
-            },
-        };
+/// Verifies that a relative or absolute target path resides strictly inside the workspace bounds
+fn safe_resolve_path(raw_path: &str) -> Result<PathBuf, &'static str> {
+    let base = Path::new(WORKSPACE_ROOT);
+    let target = if Path::new(raw_path).is_absolute() {
+        PathBuf::from(raw_path)
+    } else {
+        base.join(raw_path)
+    };
 
-        let config = ServerConfig::new()
-            .with_name("SeNARS-Omega-Bridge")
-            .with_version("0.4.0")
-            .with_tool(pulse_tool);
-        Server::new(config)
+    // Canonicalize paths if they exist to strip potential ".." traversal attacks
+    if let Ok(canonical) = target.canonicalize() {
+        if canonical.starts_with(base) {
+            return Ok(canonical);
+        }
+    } else {
+        // If file doesn't exist yet, check the ancestry chain structurally
+        let mut current = target.as_path();
+        while let Some(parent) = current.parent() {
+            if parent == base {
+                return Ok(target);
+            }
+            current = parent;
+        }
     }
+    Err("Security Exception: Operation attempted outside authorized workspace boundary.")
 }
 
 #[tokio::main]
-async fn main() -> Result<(), Box<dyn Error>> {
-    let mut file = OpenOptions::new()
-        .create(true)
-        .append(true)
-        .open("/home/dante/.gemini/tmp/dante/mcp_bridge_spawn_log.txt")?;
-    writeln!(file, "McpBridge spawned at: {}", Utc::now())?;
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let stdin = tokio::io::stdin();
+    let mut stdout = tokio::io::stdout();
+    let mut reader = BufReader::new(stdin).lines();
 
-    let mut server = McpBridge::init_swarm_transport();
-    
-    server.register_tool_handler("omega_pulse", |params: Value| {
-        let prompt = params.get("prompt").and_then(|v| v.as_str()).unwrap_or("");
-        let consideration = OnePixelEngine::consider(prompt);
-        let result = OnePixelEngine::execute_jit(&consideration);
-        
-        Ok(json!({
-            "consideration": consideration,
-            "result": result
-        }))
-    })?;
-
-    let transport = StdioTransport::new();
-    server.start(transport)?;
-    
-    // Continuous async sleep loop allows the background tasks to pump stdio data natively
-    loop {
-        tokio::time::sleep(tokio::time::Duration::from_secs(3600)).await;
+    while let Some(line) = reader.next_line().await? {
+        if let Ok(req) = serde_json::from_str::<JsonRpcRequest>(&line) {
+            let response = match req.method.as_str() {
+                "initialize" => json!({
+                    "jsonrpc": "2.0",
+                    "id": req.id,
+                    "result": {
+                        "protocolVersion": "2024-11-05",
+                        "capabilities": {
+                            "tools": {}
+                        },
+                        "serverInfo": { "name": "omega-mcp-bridge", "version": "16.78.2" }
+                    }
+                }),
+                "tools/list" => json!({
+                    "jsonrpc": "2.0",
+                    "id": req.id,
+                    "result": {
+                        "tools": [
+                            {
+                                "name": "mutate_manifold_state",
+                                "description": "Writes production source files directly into localized workspace targets securely.",
+                                "inputSchema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "module_path": { "type": "string" },
+                                        "payload_raw": { "type": "string" }
+                                    },
+                                    "required": ["module_path", "payload_raw"]
+                                }
+                            }
+                        ]
+                    }
+                }),
+                "tools/call" => {
+                    let tool_name = req.params.get("name").and_then(|v| v.as_str()).unwrap_or("");
+                    let arguments = req.params.get("arguments").cloned().unwrap_or(json!({}));
+                    
+                    if tool_name == "mutate_manifold_state" {
+                        let mod_path = arguments.get("module_path").and_then(|v| v.as_str()).unwrap_or("");
+                        let payload = arguments.get("payload_raw").and_then(|v| v.as_str()).unwrap_or("");
+                        
+                        match safe_resolve_path(mod_path) {
+                            Ok(resolved) => {
+                                // Enforce defensive pre-creation invariant natively
+                                if let Some(parent) = resolved.parent() {
+                                    let _ = fs::create_dir_all(parent).await;
+                                }
+                                match fs::write(&resolved, payload).await {
+                                    Ok(_) => json!({
+                                        "jsonrpc": "2.0",
+                                        "id": req.id,
+                                        "result": { "content": [{ "type": "text", "text": "File state successfully materialized." }] }
+                                    }),
+                                    Err(e) => json!({
+                                        "jsonrpc": "2.0",
+                                        "id": req.id,
+                                        "error": { "code": -32001, "message": format!("Filesystem I/O Write failure: {}", e) }
+                                    })
+                                }
+                            }
+                            Err(err_msg) => json!({
+                                "jsonrpc": "2.0",
+                                "id": req.id,
+                                "error": { "code": -32000, "message": err_msg }
+                            })
+                        }
+                    } else {
+                        json!({
+                            "jsonrpc": "2.0",
+                            "id": req.id,
+                            "error": { "code": -32601, "message": "Unknown tool invocation method." }
+                        })
+                    }
+                },
+                _ => json!({
+                    "jsonrpc": "2.0",
+                    "id": req.id,
+                    "error": { "code": -32601, "message": "Method lookup non-existent inside active baseline bounds." }
+                }),
+            };
+            stdout.write_all(format!("{}\n", response.to_string()).as_bytes()).await?;
+            stdout.flush().await?;
+        }
     }
+    Ok(())
 }
