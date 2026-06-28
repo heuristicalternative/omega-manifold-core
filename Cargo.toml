@@ -8,7 +8,7 @@ members = [
 
 [package]
 name = "omega-manifold-core"
-version = "16.78.1"
+version = "16.78.2"
 authors = ["Dante-Gabryell Monson"]
 edition = "2021"
 description = "Unified Hyper-Manifold OS core execution engine containing rhizomeOS and Coordination OS substrates."
