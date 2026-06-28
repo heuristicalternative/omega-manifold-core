@@ -2,3 +2,4 @@ core/mcp-bridge/target/
 PROMPT_STAGING.md
 freenet.log
 opencode_init.sh
+.env
