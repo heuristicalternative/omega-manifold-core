@@ -1,0 +1,10 @@
+/home/dante/omega-manifold/target/debug/deps/multistream_select-f7e16c43ab95dcad.d: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/dialer_select.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/length_delimited.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/listener_select.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/negotiated.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/protocol.rs
+
+/home/dante/omega-manifold/target/debug/deps/libmultistream_select-f7e16c43ab95dcad.rmeta: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/dialer_select.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/length_delimited.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/listener_select.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/negotiated.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/protocol.rs
+
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/lib.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/dialer_select.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/length_delimited.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/listener_select.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/negotiated.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/multistream-select-0.13.0/src/protocol.rs:

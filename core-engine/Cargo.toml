@@ -1,17 +1,25 @@
 [package]
-name = "omega-manifold-core"
+name = "core-engine" # Changed name to reflect new package
 version = "16.78.1"
 authors = ["Dante-Gabryell Monson"]
 edition = "2021"
 description = "Unified Hyper-Manifold OS core execution engine containing rhizomeOS and Coordination OS substrates."
 
+[lib]
+name = "omega_manifold_core"
+path = "src/lib.rs"
+
+[[bin]]
+name = "omega-manifold-node"
+path = "src/main.rs"
+
 [dependencies]
 tokio = { version = "1.38", features = ["full", "tracing"] }
 libp2p = { version = "0.53", features = ["tcp", "dns", "noise", "yamux", "gossipsub", "mdns", "macros", "tokio"] }
 serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0" # Added back, was missing from current core-engine/Cargo.toml
 cbor4ii = { version = "0.3", features = ["serde"] }
 futures = "0.3"
 tracing = "0.1"
 tracing-subscriber = "0.3"
-serde_with = "3.0"
-
+serde_with = "3.0" # Also added back, was missing

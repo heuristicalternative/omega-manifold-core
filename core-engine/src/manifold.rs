@@ -155,7 +155,9 @@ impl<'de> Deserialize<'de> for OmegaManifoldEngine {
                     match key {
                         Field::StateSpace => {
                             let vec = map.next_value::<Vec<MetabolicNode36D>>()?;
-                            state_space = Some(vec.try_into().map_err(de::Error::custom)?);
+                            state_space = Some(vec.try_into().map_err(|e: Vec<MetabolicNode36D>| {
+                                de::Error::custom(format!("failed to convert Vec to array: Vec had length {} but array expected {}. Error: {:?}", e.len(), DIMENSIONS_36D, e))
+                            })?);
                         }
                         Field::MetricTensor => {
                             metric_tensor = Some(map.next_value()?);
@@ -189,8 +191,8 @@ impl<'de> Deserialize<'de> for OmegaManifoldEngine {
 
 // Content from hybrid_engine.rs inlined below:
 
-//! Hybrid Telemetry and Dimensional Coordinate Mapping Subsystem
-//! Tracks runtime optimization metrics and structural drift across execution blocks.
+// Hybrid Telemetry and Dimensional Coordinate Mapping Subsystem
+// Tracks runtime optimization metrics and structural drift across execution blocks.
 
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct ManifoldCoordinate {
