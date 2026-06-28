@@ -1,0 +1,6 @@
+/home/dante/omega-manifold/target/debug/deps/if_watch-9f9cb0d4fce3b7a0.d: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/if-watch-3.2.2/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/if-watch-3.2.2/src/linux.rs
+
+/home/dante/omega-manifold/target/debug/deps/libif_watch-9f9cb0d4fce3b7a0.rmeta: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/if-watch-3.2.2/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/if-watch-3.2.2/src/linux.rs
+
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/if-watch-3.2.2/src/lib.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/if-watch-3.2.2/src/linux.rs:

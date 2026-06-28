@@ -39,10 +39,10 @@ impl NarsEpistemicCore {
         }
     }
 
-    /// Executes the core Non-Axiomatic Revision Operator.
+    /// Executes the core Non-Axiomatic Revision Operator as an associated function.
     /// Synthesizes two independent pieces of evidence regarding the same concept state
     /// without falling into infinite backpropagation walls.
-    pub fn calculate_revision(&self, tv1: TruthValue, tv2: TruthValue) -> TruthValue {
+    pub fn calculate_revision(tv1: TruthValue, tv2: TruthValue) -> TruthValue {
         let f1 = tv1.frequency;
         let c1 = tv1.confidence;
         let f2 = tv2.frequency;
@@ -70,8 +70,8 @@ impl NarsEpistemicCore {
             last_evidential_epoch: epoch,
         });
 
-        // Apply revision if the incoming observation comes from a valid alternative sample space
-        let updated_tv = self.calculate_revision(entry.belief_state, incoming_tv);
+        // Call as an associated function to bypass the mutable borrow on self
+        let updated_tv = Self::calculate_revision(entry.belief_state, incoming_tv);
         entry.belief_state = updated_tv;
         entry.last_evidential_epoch = epoch;
     }

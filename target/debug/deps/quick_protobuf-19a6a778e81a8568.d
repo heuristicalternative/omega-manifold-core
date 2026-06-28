@@ -1,0 +1,10 @@
+/home/dante/omega-manifold/target/debug/deps/quick_protobuf-19a6a778e81a8568.d: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/errors.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/message.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/reader.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/sizeofs.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/writer.rs
+
+/home/dante/omega-manifold/target/debug/deps/libquick_protobuf-19a6a778e81a8568.rmeta: /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/lib.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/errors.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/message.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/reader.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/sizeofs.rs /home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/writer.rs
+
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/lib.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/errors.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/message.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/reader.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/sizeofs.rs:
+/home/dante/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/quick-protobuf-0.8.1/src/writer.rs:
