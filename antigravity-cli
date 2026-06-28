@@ -6,9 +6,13 @@ import subprocess
 import requests
 import time
 
-# Load anchored environment data safely
-if os.path.exists(".env"):
-    for line in open(".env"):
+# Guarantee absolute pathing to the workspace directory
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+ENV_PATH = os.path.join(SCRIPT_DIR, ".env")
+
+# Load anchored environment data safely using absolute lookups
+if os.path.exists(ENV_PATH):
+    for line in open(ENV_PATH):
         if line.strip() and not line.startswith("#"):
             try:
                 key, val = line.strip().split("=", 1)
@@ -17,7 +21,7 @@ if os.path.exists(".env"):
                 continue
 
 API_KEY = os.getenv("GEMINI_API_KEY")
-WORKSPACE = os.getenv("WORKSPACE_DIR", os.getcwd())
+WORKSPACE = os.getenv("WORKSPACE_DIR", SCRIPT_DIR)
 RID = os.getenv("OMEGA_RID")
 BASELINE = os.getenv("OMEGA_BASELINE_TARGET")
 
@@ -37,12 +41,19 @@ def commit_and_gossip_evolution(version_tag):
     print("[*] Broadcasting state changes to Radicle P2P network...")
     run_cmd(f"git -C {WORKSPACE} push rad main")
     run_cmd("rad sync")
-    print(f"[+] Stigmergic sync complete. Node state updated under RID: {RID}")
+    
+    print("[*] Mirroring structural state changes to GitHub Cloud repository...")
+    run_cmd(f"git -C {WORKSPACE} push origin main")
+    
+    print(f"[+] Tri-layer synchronization complete. Node state updated under RID: {RID}")
 
 def main():
+    # Diagnostic Auth Verification Check
     if not API_KEY or API_KEY == "your_actual_gemini_api_key_here":
-        print("[-] Critical Error: GEMINI_API_KEY is missing or unconfigured in .env. Aborting.")
+        print("[-] Critical Error: GEMINI_API_KEY is missing or unconfigured. Aborting.")
         sys.exit(1)
+    
+    print(f"[*] Security Check: Loaded API Key identifier ({len(API_KEY)} characters).")
 
     local_diff = check_local_deltas()
     if not local_diff:
@@ -59,34 +70,32 @@ def main():
         }]
     }
 
+    # Standardized public developer API gateway routing
     url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent"
     headers = {
         'Content-Type': 'application/json',
         'x-goog-api-key': API_KEY
     }
     
-    # Execution loop with Exponential Backoff Strategy
     max_retries = 3
-    backoff_delay = 5  # Start with a 5-second delay
+    backoff_delay = 5
     
     for attempt in range(1, max_retries + 1):
         try:
             response = requests.post(url, headers=headers, data=json.dumps(payload))
             if response.status_code == 200:
                 print("[+] Cognitive processing complete. Local node state successfully mutated.")
-                commit_and_gossip_evolution("v16.78.1")
+                commit_and_gossip_evolution("v16.78.2")
                 return
             elif response.status_code == 429:
-                print(f"[!] Hit Quota/Rate Limit (429) on attempt {attempt}/{max_retries}.")
+                print(f"[!] Hit Quota Limit (429) on attempt {attempt}/{max_retries}.")
                 if attempt < max_retries:
-                    print(f"[#] Applying exponential backoff: Pausing for {backoff_delay} seconds...")
+                    print(f"[#] Applying backoff: Pausing for {backoff_delay} seconds...")
                     time.sleep(backoff_delay)
-                    backoff_delay *= 4  # Escalates delay to give the gateway time to clear
-                else:
-                    print("[-] All optimization retry thresholds exhausted for this key.")
+                    backoff_delay *= 4
             else:
                 print(f"[-] Communication failed with status code: {response.status_code}")
-                print(f"[-] Server response: {response.text[:200]}")
+                print(f"[-] Gateway response: {response.text[:200]}")
                 return
         except Exception as e:
             print(f"[-] Connection error: {e}")
