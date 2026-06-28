@@ -1,0 +1,7 @@
+error: unexpected argument '--mode' found
+
+  tip: to pass '--mode' as a value, use '-- --mode'
+
+Usage: freenet-core <MODE>
+
+For more information, try '--help'.

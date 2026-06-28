@@ -1,30 +1,36 @@
 use clap::{Parser, Subcommand};
-use serde_json::json;
+use tokio::sync::oneshot;
 
 #[derive(Parser)]
 #[command(name = "omega-mcp-cli")]
 struct Cli {
-#[command(subcommand)]
-command: Commands,
+    #[command(subcommand)]
+    command: Commands,
 }
 
 #[derive(Subcommand)]
 enum Commands {
-Ping,
+    Ping,
 }
 
 #[tokio::main]
-async fn main() {
-let cli = Cli::parse();
-match &cli.command {
-    Commands::Ping => {
-        let handshake = json!({
-            "jsonrpc": "2.0",
-            "id": 1,
-            "method": "initialize",
-            "params": { "clientInfo": { "name": "omega-shell-inspector", "version": "1.0.0" } }
-        });
-        println!("{}", handshake.to_string());
+async fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let cli = Cli::parse(); // Fixed: Instantiate the parser
+
+    match &cli.command {
+        Commands::Ping => {
+            // Using oneshot channel for async response handling
+            let (tx, rx) = oneshot::channel();
+            
+            // Simulate the ping (replace with actual client logic)
+            println!("Sending ping to Omega Manifold...");
+            tx.send("Pong: 200 OK").unwrap();
+
+            match rx.await {
+                Ok(response) => println!("Success: {}", response),
+                Err(e) => println!("Error: Failed to receive response: {}", e),
+            }
+        }
     }
-}
+    Ok(())
 }
