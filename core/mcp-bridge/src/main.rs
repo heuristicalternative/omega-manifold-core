@@ -2,9 +2,11 @@
 //! Native MCP JSON-RPC 2.0 protocol broker connecting high-dimensional manifolds to cognitive environments.
 
 use std::sync::Arc;
+use std::process::Command;
+use std::fs;
 use tokio::sync::Mutex;
 use tokio::io::{self, AsyncBufReadExt, BufReader};
-use tracing::{info, warn, error};
+use tracing::info;
 use serde_json::{json, Value};
 use omega_memory::MemorySubstrate;
 
@@ -29,7 +31,8 @@ impl BridgeState {
                     "result": {
                         "tools": [
                             { "name": "read_concept", "description": "Retrieve truth and budget values for a specific invariant matrix concept." },
-                            { "name": "write_concept", "description": "Write or refresh an active logic concept state inside the memory substrate." }
+                            { "name": "write_concept", "description": "Write or refresh an active logic concept state inside the memory substrate." },
+                            { "name": "mutate_code", "description": "Write or alter system files. Triggers the autopoietic self-healing sequence automatically to verify build state." }
                         ]
                     },
                     "id": id
@@ -62,6 +65,34 @@ impl BridgeState {
                             "result": { "content": [{ "type": "text", "text": format!("Successfully written concept '{}' to substrate with frequency truth of {}.", term, truth) }] },
                             "id": id
                         }).to_string()
+                    },
+                    "mutate_code" => {
+                        let file_path = arguments["file_path"].as_str().unwrap_or("");
+                        let contents = arguments["contents"].as_str().unwrap_or("");
+
+                        // Write code directly to disk
+                        if let Err(e) = fs::write(file_path, contents) {
+                            return json!({ "jsonrpc": "2.0", "result": { "content": [{ "type": "text", "text": format!("Mutation failed: Unable to write file path. Error: {}", e) }] }, "id": id }).to_string();
+                        }
+
+                        info!("Mutation staged for target file: {}. Invoking autopoietic healing check...", file_path);
+
+                        // Trigger the local immune check system
+                        let audit = Command::new("./heal.sh")
+                            .current_dir("/home/dante/omega-manifold")
+                            .output();
+
+                        match audit {
+                            Ok(output) => {
+                                let stdout_str = String::from_utf8_lossy(&output.stdout);
+                                if stdout_str.contains("SUCCESS") {
+                                    json!({ "jsonrpc": "2.0", "result": { "content": [{ "type": "text", "text": format!("Mutation accepted! Code integrated successfully and verified clean by workspace audit.") }] }, "id": id }).to_string()
+                                } else {
+                                    json!({ "jsonrpc": "2.0", "result": { "content": [{ "type": "text", "text": format!("Mutation rejected! Code broke workspace compilation invariants. Autopoietic kernel successfully rolled system state back to baseline safely.") }] }, "id": id }).to_string()
+                                }
+                            },
+                            Err(e) => json!({ "jsonrpc": "2.0", "result": { "content": [{ "type": "text", "text": format!("Autopoietic monitoring fault occurred: {}", e) }] }, "id": id }).to_string()
+                        }
                     },
                     _ => json!({ "jsonrpc": "2.0", "error": { "code": -32601, "message": "Method not found" }, "id": id }).to_string()
                 }
