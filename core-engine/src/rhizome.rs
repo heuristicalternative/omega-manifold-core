@@ -4,7 +4,6 @@
 use libp2p::{gossipsub, mdns, noise, tcp, yamux, Swarm, SwarmBuilder};
 use std::error::Error;
 use std::time::Duration;
-use libp2p::core::PeerId;
 use libp2p::identity;
 use tokio::sync::mpsc;
 
@@ -20,7 +19,7 @@ pub struct RhizomeNode {
 
 impl RhizomeNode {
     pub async fn new(_memento_tx: mpsc::Sender<Vec<u8>>) -> Result<Self, Box<dyn Error>> {
-        let id_keys = identity::Keypair::generate_ed25519();
+        let _id_keys = identity::Keypair::generate_ed25519();
 
         // Construct the modern multi-phase swarm transport pipeline
         let swarm = SwarmBuilder::with_new_identity()

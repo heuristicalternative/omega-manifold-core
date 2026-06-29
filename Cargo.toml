@@ -5,6 +5,7 @@ members = [
     "core/mcp-cli",
     "core/rtk-proxy",
     "core/cubebox-client",
-    "core/cli"
+    "core/cli",
+    "core/memory"
 ]
 resolver = "2"
