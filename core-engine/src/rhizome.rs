@@ -1,56 +1,56 @@
-//! Asynchronous P2P Rhizome Network Subsystem
-//! Configures libp2p Swarm transport parameters under type-safe execution wrappers.
+//! HEADER LAYER: L3 - Decentralized Network Substrate (RhizomeOS)
+//! Handles peer-to-peer discovery, transport binding, and secure frame inhalation over libp2p.
 
-use libp2p::{gossipsub, mdns, noise, tcp, yamux, Swarm, SwarmBuilder};
 use std::error::Error;
 use std::time::Duration;
-use libp2p::identity;
-use tokio::sync::mpsc;
+use libp2p::{futures::StreamExt, identity, swarm::SwarmEvent, SwarmBuilder};
+use tracing::info;
 
-#[derive(libp2p::swarm::NetworkBehaviour)]
-pub struct RhizomeBehaviour {
-    pub gossipsub: gossipsub::Behaviour,
-    pub mdns: mdns::tokio::Behaviour,
-}
+pub async fn bootstrap_rhizome_node() -> Result<(), Box<dyn Error>> {
+    info!("RhizomeOS Network Substrate initializing...");
 
-pub struct RhizomeNode {
-    pub swarm: Swarm<RhizomeBehaviour>,
-}
+    // Generate local cryptographic identity keys
+    let local_key = identity::Keypair::generate_ed25519();
+    let local_peer_id = libp2p::PeerId::from(local_key.public());
+    info!("Local cryptographic node identity instantiated: {}", local_peer_id);
 
-impl RhizomeNode {
-    pub async fn new(_memento_tx: mpsc::Sender<Vec<u8>>) -> Result<Self, Box<dyn Error>> {
-        let _id_keys = identity::Keypair::generate_ed25519();
+    // Build the networking swarm using tokio defaults for TCP, Noise security, and Yamux multiplexing
+    let mut swarm = SwarmBuilder::with_existing_identity(local_key)
+        .with_tokio()
+        .with_tcp(
+            libp2p::tcp::Config::default(),
+            libp2p::noise::Config::new,
+            libp2p::yamux::Config::default,
+        )?
+        .with_behaviour(|_key| libp2p::swarm::dummy::Behaviour)?
+        .with_swarm_config(|c| c.with_idle_connection_timeout(Duration::from_secs(30)))
+        .build();
 
-        // Construct the modern multi-phase swarm transport pipeline
-        let swarm = SwarmBuilder::with_new_identity()
-            .with_tokio()
-            .with_tcp(
-                tcp::Config::default(),
-                noise::Config::new,
-                yamux::Config::default,
-            )?
-            .with_behaviour(|key| {
-                let message_authenticity = gossipsub::MessageAuthenticity::Signed(key.clone());
-                
-                let gossipsub_config = gossipsub::ConfigBuilder::default()
-                    .heartbeat_interval(Duration::from_millis(250))
-                    .validation_mode(gossipsub::ValidationMode::Strict)
-                    .build()
-                    .expect("Valid structural gossipsub configuration expected");
-                
-                let gossipsub = gossipsub::Behaviour::new(message_authenticity, gossipsub_config)
-                    .expect("Failed to initialize sovereign Gossipsub behavior");
-                    
-                let mdns = mdns::tokio::Behaviour::new(
-                    mdns::Config::default(), 
-                    key.public().to_peer_id()
-                ).expect("Failed to initialize local mDNS network listener");
-                
-                RhizomeBehaviour { gossipsub, mdns }
-            })?
-            .with_swarm_config(|c| c.with_idle_connection_timeout(Duration::from_secs(60)))
-            .build();
+    // Bind to all local interfaces on an ephemeral, secure TCP port
+    swarm.listen_on("/ip4/0.0.0.0/tcp/0".parse()?)?;
 
-        Ok(Self { swarm })
-    }
+    info!("RhizomeOS network engine bound to socket. Awaiting data frames...");
+
+    // Spawn the persistent network event inhalation loop
+    tokio::spawn(async move {
+        loop {
+            match swarm.select_next_some().await {
+                SwarmEvent::NewListenAddr { address, .. } => {
+                    info!("RhizomeOS node actively listening on decentralized coordinate: {}", address);
+                }
+                SwarmEvent::IncomingConnection { local_addr, send_back_addr, .. } => {
+                    info!("Secure connection vector initiated from {} to local receptor {}", send_back_addr, local_addr);
+                }
+                SwarmEvent::ConnectionEstablished { peer_id, endpoint, .. } => {
+                    info!("Handshake successful. Connected to remote peer node: {} via {:?}", peer_id, endpoint);
+                }
+                SwarmEvent::ConnectionClosed { peer_id, cause, .. } => {
+                    info!("Connection closed with peer node: {}. Reason: {:?}", peer_id, cause);
+                }
+                _ => {}
+            }
+        }
+    });
+
+    Ok(())
 }
